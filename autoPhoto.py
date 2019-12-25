@@ -6,14 +6,13 @@ nowtime = time.strftime("%Y_%m_%d_%H:%M:%S",time.localtime())
 
 import requests
 
-def lineNotifyMessage(token, msg):
+def lineNotifyMessage(token, picURI):
     headers = {
         "Authorization": "Bearer " + token, 
         "Content-Type" : "application/x-www-form-urlencoded"
     }
-
-    payload = {'message': msg}
-    r = requests.post("https://notify-api.line.me/api/notify", headers = headers, params = payload)
+    files = {'imageFile': open(picURI, 'rb')}
+    r = requests.post("https://notify-api.line.me/api/notify", headers = headers, files = files)
     return r.status_code
 
 # 修改為你要傳送的訊息內容
@@ -21,7 +20,7 @@ message = 'take a Selfie'
 # 修改為你的權杖內容
 token = '1RyOE1jpJNxtgMWSve7VT2nOiTj0kyxmnuq5T4wiOet'
 
-lineNotifyMessage(token, message)
+
 
 camera = PiCamera(resolution=(1920,1080)), framerate=30)
 # Set ISO to the desired value
@@ -35,4 +34,9 @@ g = camera.awb_gains
 camera.awb_mode = 'off'
 camera.awb_gains = g
 # Finally, take several photos with the fixed settings
-camera.capture_sequence([nowtime+'%02d.jpg' % i for i in range(3)])
+
+picName = nowtime+'.jpg'
+camera.capture(picName)
+
+picURI = picName
+lineNotifyMessage(token, message)
