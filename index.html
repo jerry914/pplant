@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>植植狀態台</title>
+<link rel="shortcut icon" href="assect/Asset 1.png" type="image/x-icon">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+</head>
+<body>
+
+<h1 class='title'>This is a Heading</h1>
+<p class='title'>是在哈囉.</p>
+<div class="content">
+    <div class="contentBlock-1 contentBlock">
+        <div>
+            <div class="imageBlock">
+                <iframe width="280" height="250" scrolling="no" frameborder="0" src="https://mcs.mediatek.com/public/devices/DTRiZjmx/datachannels/status?locale=zh-TW"></iframe>
+            </div>
+        </div>
+        <div>
+            <div class="imageBlock" style="background-image: url(&quot;https://www.aade.org.tw/website/wp-content/uploads/2019/05/霧室.png&quot;);">
+            </div>
+        </div>
+        <div>
+            <div class="imageBlock-mid">
+                <canvas id="chart"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="contentBlock-2 contentBlock">
+        <div class="blockTitle">
+            <div class="newsDer">最新狀態</div>
+        </div>
+        <table>
+            <tr class="newsList">
+                <td>
+                    <div class="newsimageBlock"><img class="newsImage" src="assect/Asset 1.png" alt=""></div>
+                </td>
+                <td class="newsTitle">外出放風中<br><small>JAN. 6.2020 at 12:00AM</td>
+            </tr>
+            <tr class="newsList">
+                <td>
+                    <div class="newsimageBlock"><img class="newsImage" src="assect/Asset 4.png" alt=""></div>
+                </td>
+                <td class="newsTitle">Mostly Sunny tomorrow!With a high of 17C and a low of 26C. <br><small>JAN. 5.2020 at 06:14PM</td>
+            </tr>
+            <tr class="newsList">
+                <td>
+                    <div class="newsimageBlock"><img class="newsImage" src="assect/Asset 1.png" alt=""></div>
+                </td>
+                <td class="newsTitle">缺水警告<br><small>JAN. 5.2020 at 12:09AM</small></td>
+            </tr>
+            <tr class="newsList">
+                <td>
+                    <div class="newsimageBlock"><img class="newsImage" src="assect/dead.png" alt=""></div>
+                </td>
+                <td class="newsTitle">Connected Successfully ! Data loading ......<br><small>JAN. 4.2020 at 02:13AM</small></td>
+            </tr>
+            <tr class="newsList">
+                <td>
+                    <div  class="newsimageBlock"></div><img class="newsImage" src="assect/Asset 1.png" alt=""></div>
+                </td>
+                <td class="newsTitle">Your PLANT is conscious 🎉🎉🎉 🎉🎉🎉🎉🎉🎉<br><small>DEC. 27.2019 at 10:49AM</small></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class='iframeContainer'>
+    <iframe width="250" height="250" scrolling="no" frameborder="0" src="https://mcs.mediatek.com/public/devices/DTRiZjmx/datachannels/temp?locale=zh-TW"></iframe>
+    <iframe width="250" height="250" scrolling="no" frameborder="0" src="https://mcs.mediatek.com/public/devices/DTRiZjmx/datachannels/humid?locale=zh-TW"></iframe>
+    <iframe width="250" height="250" scrolling="no" frameborder="0" src="https://mcs.mediatek.com/public/devices/DTRiZjmx/datachannels/moist?locale=zh-TW"></iframe>
+    <iframe width="250" height="250" scrolling="no" frameborder="0" src="https://mcs.mediatek.com/public/devices/DTRiZjmx/datachannels/flight?locale=zh-TW"></iframe>
+    <iframe width="250" height="250" scrolling="no" frameborder="0" src="https://mcs.mediatek.com/public/devices/DTRiZjmx/datachannels/close?locale=zh-TW"></iframe>    
+</div>
+
+
+
+</body>
+</html>
+
+<style>
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+*{
+    font-family: 'Quicksand','微軟正黑體';
+    transition: 0.6s;
+    color: #FFF;
+}
+body{
+    background-color: #32645a;
+    /* background-image: url("assect/Asset 3.png"); */
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.title{
+    position: relative; 
+    left: 20%;
+    /* min-width: 1280px; */
+}
+.iframeContainer{
+    margin: auto;
+    max-width: 1280px;
+}
+small{
+    opacity: 0.8;
+}
+
+@keyframes oxxo{
+    0%{
+        left: 0;
+    }
+    40%{
+        left: 500px;
+    }
+    100%{
+        left: 0;
+    }
+}
+
+.content {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+    margin: 10px
+}
+
+.contentBlock {
+	animation-name: entryBlock;
+	animation-duration: 2s;
+}
+
+@media all and (min-width: 0px) {
+	.midImageBlock {
+		height: 300px;
+	}
+
+	.contentBlock-1, .contentBlock-4 {
+		justify-content: center;
+		display: flex;
+		flex-flow: row wrap;
+	}
+}
+
+@media all and (min-width: 960px) {
+	.contentBlock {
+		flex: 1 0 0;
+		justify-content: center;
+	}
+
+	.contentBlock-1, .contentBlock-3, .contentBlock-4 {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-flex-flow: row wrap;
+		align-content: center;
+		flex-flow: row wrap;
+	}
+
+	.contentBlock-1, .contentBlock-3, .contentBlock-4, .contentBlock-2 {
+		max-width: 640px;
+	}
+}
+
+@media all and (min-width: 1440px) {
+	.contentBlock-1 {
+		order: 1;
+		justify-content: flex-end;
+		display: flex;
+		flex-flow: row wrap;
+		animation-delay: 0s;
+	}
+
+	.contentBlock-2 {
+		order: 2;
+		justify-content: flex-start;
+		animation-delay: 0.2s;
+	}
+
+	.contentBlock-3 {
+		order: 3;
+		justify-content: flex-end;
+		animation-delay: 0.2s;
+	}
+
+	.contentBlock-4 {
+		order: 4;
+		justify-content: flex-start;
+		animation-delay: 0.6s;
+	}
+}
+
+.imageBlock {
+	width: 280px;
+	height: 250px;
+	margin-top: 10px;
+	margin: 2px;
+	background-size: cover;
+    background-color: #fff;
+}
+.imageBlock-mid {
+	width: 562px;
+	height: 250px;
+	margin-top: 10px;
+	margin: 4px;
+	background-size: cover;
+    /* background-color: #fff; */
+}
+
+
+.imageMask {
+	opacity: 0;
+	height: 100%;
+}
+
+.imageMask:hover {
+	background: rgba(0, 0, 0, 0.6);
+	opacity: 1;
+}
+
+.blockTitle {
+	position: relative;
+	padding: 10px;
+	font-size: 1.2em;
+	text-align: left;
+	font-style: bold;
+	z-index: 1;
+}
+.newsimageBlock{
+    height: 60px;
+}
+
+.newsImage {
+	width: 35px;
+	height: auto;
+    margin: 15px;
+}
+
+.newsTitle {
+	font-size: 1.1em;
+	/* padding: 10px; */
+    line-height: 30px;
+    margin-top: 5px
+}
+
+.newsList {
+	margin: 10px;
+	display: flex;
+	cursor: pointer;
+	border: 1px #f5949a dashed;
+    width: 560px;
+}
+
+.newList, newsTitle {
+	text-align: left;
+}
+
+.newsDer {
+	position: absolute;
+	/* top: 24px; */
+	height: 15px;
+	width: 120px;
+	border: 1px #f5949a dashed;
+	border-radius: 50px;
+	-webkit-filter: drop-shadow(7px 7px 2px rgba(0, 0, 0, 0.2));
+	filter: drop-shadow(7px 7px 2px rgba(0, 0, 0, 0.2));
+	z-index: -1;
+    animation-name: oxxo;
+    animation-duration: 5s;
+    animation-delay: 5s;
+    animation-iteration-count: infinite;
+}
+</style>
+
+
+<script>
+var ctx = document.getElementById('chart').getContext('2d');
+var chart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange","df"],
+        datasets: [{
+            label: 'History Status',
+            data: [0,10, 19, 33, 45, 42, 67],
+            backgroundColor: [ 
+                "#87b698",
+                "#87b698",
+                "#ffd0ab",
+                "#efdbcb",
+                "#ffe9e4",
+                "#ffbbb0",
+                "#f5949a"
+            ],
+            borderCapStyle: [
+                "#fff"
+            ]
+        }]
+    },
+    options: {
+        legend: {
+            display: true,
+            labels: {
+                fontColor: '#fff'
+            }
+        }
+    }
+});
+var f = ['🌱', '🌱🌱', '🌱🌱🌱', '🌱🌱🌱🌱', '🌱🌱🌱🌱🌱','🌱🌱🌱🌱🌱🌱','🌱🌱🌱', '🌱🌱', '🌱', ''];
+var fIdx = 0;
+var pauseTime = 100;
+function loop() {
+    pauseTime = fIdx*fIdx+100;
+    fIdx = Math.floor((Date.now()/100)%f.length)
+    console.log(Date.now());
+    location.hash = f[fIdx];
+    setTimeout(loop, pauseTime);
+}
+
+loop();
+</script>
